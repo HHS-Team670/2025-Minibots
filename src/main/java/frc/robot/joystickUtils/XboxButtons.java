@@ -1,0 +1,27 @@
+package frc.robot.joystickUtils;
+
+public class XboxButtons {
+  public static final int A = 1;
+  public static final int B = 2;
+  public static final int X = 4;
+  public static final int Y = 5;
+  public static final int RIGHT_BUMPER = 8;
+  public static final int LEFT_BUMPER = 7;
+  public static final int BACK = 6;
+  public static final int START = 11;
+  public static final int LEFT_JOYSTICK_BUTTON = 9;
+  public static final int RIGHT_JOYSTICK_BUTTON = 10;
+
+  // Controller Axes
+  /** Left = Negative, Right = Positive [-1, 1] */
+  public static final int LEFT_STICK_X = 0;
+
+  /** Up = Negative, Down = Positive [-1, 1] */
+  public static final int LEFT_STICK_Y = 1;
+
+  /** Left = Negative, Right = Positive [-1, 1] */
+  public static final int RIGHT_STICK_X = 2; // 0 for keyboard
+
+  /** Up = Negative, Down = Positive [-1, 1] */
+  public static final int RIGHT_STICK_Y = 3;
+}
