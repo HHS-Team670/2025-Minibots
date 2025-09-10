@@ -24,4 +24,5 @@ public class XboxButtons {
 
   /** Up = Negative, Down = Positive [-1, 1] */
   public static final int RIGHT_STICK_Y = 3;
+public static final String Driver_ButtonA = null;
 }
