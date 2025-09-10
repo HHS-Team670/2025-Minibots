@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.SetCatapult;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.joystickUtils.XboxJoysticButtons;
+import frc.robot.subsystems.Catapult.CatapultMode;
 import frc.robot.subsystems.Drivetrain;
 
 public final class OI {
@@ -22,8 +23,8 @@ public final class OI {
   }
 
   public static void configureDriverControls() {
-    XboxJoysticButtons.Driver_ButtonA.onTrue(new SetCatapult());
-    XboxJoysticButtons.Driver_ButtonB.onTrue(new SetCatapult());
+    XboxJoysticButtons.Driver_ButtonA.onTrue(new SetCatapult(CatapultMode.ON));
+    XboxJoysticButtons.Driver_ButtonB.onTrue(new SetCatapult(CatapultMode.OFF));
   }
 
   // Returns the command that will be set as the drive command during tele-op
