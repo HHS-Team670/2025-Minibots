@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Catapult;
+import frc.robot.subsystems.Catapult.CatapultMode;
 
 public class SetCatapult extends Command { // or extends InstantCommand
 
@@ -9,33 +10,15 @@ public class SetCatapult extends Command { // or extends InstantCommand
 //Single Tin
 
   Catapult catapult;
-
-  public SetCatapult() {
+  CatapultMode mode;
+  public SetCatapult(CatapultMode mode) {
     catapult = Catapult.getInstance();
+    this.mode = mode;
   }
-
   
-  
-  @Overide
+  @Override
   public void initialize() {
-    catapult.setCatapultMode(CatapultMode.ON);
+        catapult.setCatapultMode(mode);
   }
 
-
-  // @Override
-  // public void execute() {
-  //   //
-  // }
-
-
-  // @Override
-  // public void end(boolean interrupted) {
-
-  // }
-
-
-  // @Override
-  // public boolean isFinished() {
-  //   return false;
-  // }
 }
