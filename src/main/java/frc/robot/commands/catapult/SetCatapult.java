@@ -6,14 +6,16 @@ import frc.robot.subsystems.Catapult.CatapultMode;
 
 public class SetCatapult extends InstantCommand{
     private final Catapult catapult;
+    private final CatapultMode mode;
 
-    public SetCatapult() {
+    public SetCatapult(CatapultMode mode) {
         this.catapult = Catapult.getInstance();
+        this.mode = mode;
     }
 
     @Override
     public void initialize() {
-        catapult.setCatapultMode(CatapultMode.ON);
+        catapult.setCatapultMode(this.mode);
     }
     
 }
