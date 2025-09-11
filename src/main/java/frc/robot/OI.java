@@ -5,13 +5,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.joystickUtils.XboxJoysticButtons;
 import frc.robot.subsystems.Drivetrain;
-<<<<<<< HEAD
-=======
 import frc.robot.subsystems.Catapult.CatapultMode;
 import frc.robot.commands.FollowLine;
 import frc.robot.commands.SetCatapult;
-
->>>>>>> 5a122bb (Create setCatapult, working on FollowLine)
 
 public final class OI {
   // Controllers
