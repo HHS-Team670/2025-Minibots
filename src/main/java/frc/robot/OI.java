@@ -28,14 +28,9 @@ public final class OI {
   }
 
   public static void configureDriverControls() {
-<<<<<<< HEAD
-=======
-    // XboxJoysticButtons.Driver_ButtonA.onTrue(new SetCatapult(CatapultMode.ON));
-    // XboxJoysticButtons.Driver_ButtonB.onTrue(new SetCatapult(CatapultMode.OFF));
     XboxJoysticButtons.Driver_ButtonA.onTrue(new SetCatapult(CatapultMode.ON));
     XboxJoysticButtons.Driver_ButtonA.onFalse(new SetCatapult(CatapultMode.OFF));
-    XboxJoysticButtons.Driver_ButtonA.onTrue(new FollowLine());
->>>>>>> 5a122bb (Create setCatapult, working on FollowLine)
+    XboxJoysticButtons.Driver_ButtonB.onTrue(new FollowLine());
   }
 
   // Returns the command that will be set as the drive command during tele-op
