@@ -1,6 +1,12 @@
 {
+<<<<<<< HEAD
     "enableCppIntellisense": false,
     "currentLanguage": "java",
     "projectYear": "2025beta",
+=======
+    "currentLanguage": "none",
+    "enableCppIntellisense": false,
+    "projectYear": "none",
+>>>>>>> 5a122bb (Create setCatapult, working on FollowLine)
     "teamNumber": 670
 }
