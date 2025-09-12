@@ -6,9 +6,9 @@ import frc.robot.subsystems.Catapult.CatapultMode;
 
 public class SetCatapult extends InstantCommand {
   private Catapult catapult;
+  CatapultMode mode;
 
-
-  public SetCatapult() {
+  public SetCatapult(CatapultMode mode) {
     this.catapult = Catapult.getInstance();
 
   }
@@ -16,7 +16,7 @@ public class SetCatapult extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    catapult.setCatapultMode(CatapultMode.ON);
+    catapult.setCatapultMode(mode);
   }
 }
 //   // Called every time the scheduler runs while the command is scheduled.
