@@ -20,7 +20,8 @@ public class AutonPath extends SequentialCommandGroup {
             new DriveForward(1, 5),
             new TurnDegrees(1, 90),
 
-            new DriveForward(1, 5)
+            new DriveForward(1, 5),
+            new TurnDegrees(1, 90)
 
             
         );
