@@ -1,61 +1,50 @@
 package frc.robot.commands;
 
-//import frc.robot.subsystems.Drivetrain;
-import frc.robot.commands.drivetrain.DriveForward;
-import frc.robot.commands.drivetrain.TurnDegrees;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ReflectiveSensor;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.Command;
 
-//drive train + ref sensor
-// do thing with sensor same as set catapult
-public class LineFollowing extends SequentialCommandGroup{
-
-
+public class LineFollowing extends Command{
+    ReflectiveSensor rf;
+    Drivetrain mDrivetrain;
     double lValue, rValue, tapeColor = 0.5;
 
-    public LineFollowing () {
-
+    public LineFollowing (ReflectiveSensor rf) {
+        this.rf = rf;
+        this.mDrivetrain = Drivetrain.getInstance();
     }
 
-    // public void initialize () {
-        
-    // }
+    @Override
+    public void initialize () {
+    }
 
-    public void execute (ReflectiveSensor rf) {
+    @Override
+    public void execute () {
         lValue = rf.leftValue();
         rValue = rf.rightValue();
         
-        if (lValue == tapeColor && rValue == tapeColor) {
+// In future change to move forward while turning
+
+        if (lValue <= tapeColor && rValue <= tapeColor) {
             // continue going forward
-            addCommands (
-                new DriveForward(1, 2)
-            );
+            mDrivetrain.arcadeDrive(1,0);
         }
-        else if (rValue != tapeColor && lValue == tapeColor) {
+        else if (lValue <= tapeColor && rValue != tapeColor ) {
             // turn left
-            addCommands (
-                new TurnDegrees(1, -20)
-            );
+            mDrivetrain.arcadeDrive(0,-1);
         }
-        else if (lValue != tapeColor && rValue == tapeColor) {
+        else if (lValue != tapeColor && rValue <= tapeColor) {
             // turn right
-            addCommands (
-                new TurnDegrees(1, 20)
-            );
+            mDrivetrain.arcadeDrive(0,1);
         }
-
-
-        // get right and left sensor values
-        // check if they detect the tape
-        // if statements for sides and turn the corresponding direction
-        // if both detect continue forward
     }
 
-    // public void isFinished() {
+    @Override
+    public boolean isFinished() {
+        return (lValue >= tapeColor && rValue >= tapeColor);
+    }
 
-    // }
-
-    public void end() {
-
+    @Override
+    public void end(boolean interrupted) {
     }
 }
