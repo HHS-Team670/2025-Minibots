@@ -12,6 +12,7 @@ public class LineFollowing extends Command{
     public LineFollowing (ReflectiveSensor rf) {
         this.rf = rf;
         this.mDrivetrain = Drivetrain.getInstance();
+        addRequirements(mDrivetrain);
     }
 
     @Override
@@ -22,6 +23,7 @@ public class LineFollowing extends Command{
     public void execute () {
         lValue = rf.leftValue();
         rValue = rf.rightValue();
+        
         
 // In future change to move forward while turning
 
