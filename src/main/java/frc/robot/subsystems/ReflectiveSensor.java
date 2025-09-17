@@ -11,7 +11,6 @@ public class ReflectiveSensor extends SubsystemBase {
         mInstance = mInstance == null ? new ReflectiveSensor() : mInstance;
         return mInstance;
     }
-
     private XRPReflectanceSensor mReflectanceSensor;
 
     private ReflectiveSensor() {
