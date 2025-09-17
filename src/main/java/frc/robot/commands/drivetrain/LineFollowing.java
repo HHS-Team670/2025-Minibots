@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public class LineFollowing extends Command {
   private final Drivetrain mDrivetrain;
-  private final double distance;
   private final double speed;
   private ReflectiveSensor x = ReflectiveSensor.getInstance();
   
@@ -19,8 +18,7 @@ public class LineFollowing extends Command {
    * @param inches The number of inches the robot will drive
    * @param drive The drivetrain subsystem on which this command will run
    */
-  public LineFollowing(double speed, double inches) {
-    distance = inches;
+  public LineFollowing(double speed) {
     this.speed = speed;
     this.mDrivetrain = Drivetrain.getInstance();
     addRequirements(mDrivetrain);
@@ -36,17 +34,17 @@ public class LineFollowing extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (x.leftValue() == 0.77 && x.rightValue() == 0.77) {
+    if (x.leftValue() <= 0.8 && x.rightValue() <= 0.80) {
         mDrivetrain.arcadeDrive(speed, 0);
     }
-    if (x.leftValue() == 0.77 && x.rightValue() != 0.77) {
-        mDrivetrain.arcadeDrive(speed, -1);
+    if (x.leftValue() <= 0.80 && x.rightValue() > 0.80) {
+        mDrivetrain.arcadeDrive(speed, 0.5);
     }
-    if (x.leftValue() != 0.77 && x.rightValue() == 0.77) {
-        mDrivetrain.arcadeDrive(speed, 1);
+    if (x.leftValue() > 0.80 && x.rightValue() <= 0.80) {
+        mDrivetrain.arcadeDrive(speed, -0.5);
     }
-    if (x.leftValue() != 0.77 && x.rightValue() != 0.77) {
-        mDrivetrain.arcadeDrive(speed, 0);
+    if (x.leftValue() > 0.80 && x.rightValue() > 0.80) {
+        mDrivetrain.arcadeDrive(0, 0);
     }
   }
 
@@ -60,6 +58,11 @@ public class LineFollowing extends Command {
   @Override
   public boolean isFinished() {
     // Compare distance travelled from start to desired distance
-    return Math.abs(mDrivetrain.getAverageDistanceInch()) >= distance;
+    if (x.leftValue() > 0.80 && x.rightValue() > 0.80) {
+      return Math.abs(mDrivetrain.getAverageDistanceInch()) >= 0;
+    }
+    else {
+      return Math.abs(mDrivetrain.getAverageDistanceInch()) >= 1000000001;
+    }
   }
 }
