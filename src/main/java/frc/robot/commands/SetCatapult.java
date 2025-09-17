@@ -10,6 +10,7 @@ public class SetCatapult extends InstantCommand {
 
   public SetCatapult(CatapultMode mode) {
     this.catapult = Catapult.getInstance();
+    this.mode = mode;
 
   }
 
