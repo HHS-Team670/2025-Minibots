@@ -42,7 +42,7 @@ public class LineFollow extends Command {
             this.drivetrain.arcadeDrive(speed, 0);
             // System.out.println("Online");
         } else if (!isLeft() && isRight()) {
-            this.drivetrain.arcadeDrive(0, turnSpeed);
+            this.drivetrain.arcadeDrive(0, -turnSpeed);
             // System.out.println("swerve left");
 
         } else if (isLeft() && !isRight()) {
