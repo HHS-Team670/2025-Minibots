@@ -4,7 +4,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ReflectiveSensor;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class LineFollowing extends Command{
+public class LineFollowing extends Command {
     ReflectiveSensor rf;
     Drivetrain mDrivetrain;
     double lValue, rValue, tapeColor = 0.5;
@@ -23,7 +23,6 @@ public class LineFollowing extends Command{
     public void execute () {
         lValue = rf.leftValue();
         rValue = rf.rightValue();
-        
         
 // In future change to move forward while turning
 
