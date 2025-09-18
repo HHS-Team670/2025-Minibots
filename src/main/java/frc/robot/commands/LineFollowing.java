@@ -9,8 +9,8 @@ public class LineFollowing extends Command {
     Drivetrain mDrivetrain;
     double lValue, rValue, tapeColor = 0.5;
 
-    public LineFollowing (ReflectiveSensor rf) {
-        this.rf = rf;
+    public LineFollowing () {
+        this.rf = ReflectiveSensor.getInstance();
         this.mDrivetrain = Drivetrain.getInstance();
         addRequirements(mDrivetrain);
     }
