@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.LineFollowing;
 import frc.robot.commands.SetCatapult;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.joystickUtils.XboxJoysticButtons;
@@ -25,6 +26,7 @@ public final class OI {
   public static void configureDriverControls() {
     XboxJoysticButtons.Driver_ButtonA.onTrue(new SetCatapult(CatapultMode.ON));
     XboxJoysticButtons.Driver_ButtonB.onTrue(new SetCatapult(CatapultMode.OFF));
+    XboxJoysticButtons.Driver_ButtonX.onTrue(new LineFollowing(1, 0.25));
 
   }
 
