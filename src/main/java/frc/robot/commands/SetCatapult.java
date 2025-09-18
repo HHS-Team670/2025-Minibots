@@ -8,8 +8,8 @@ public class SetCatapult extends InstantCommand {
   CatapultMode mode;  
   public SetCatapult(CatapultMode setmodes){
     
-    catapult = Catapult.getInstance();
-    mode = setmodes;
+    this.catapult = Catapult.getInstance();
+    this.mode = setmodes;
       
   }
 
