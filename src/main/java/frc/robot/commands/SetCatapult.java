@@ -4,13 +4,12 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Catapult;
 import frc.robot.subsystems.Catapult.CatapultMode;
 
-public class SetCatapult extends InstantCommand {
-
-    Catapult catapult;
-    CatapultMode state;
+public class SetCatapult extends InstantCommand{
+    private final Catapult catapult;
+    private final CatapultMode state;
 
     public SetCatapult(CatapultMode setState) {
-        catapult = Catapult.getInstance();
+        this.catapult = Catapult.getInstance();
         this.state = setState;
     }
 
@@ -18,4 +17,5 @@ public class SetCatapult extends InstantCommand {
     public void initialize() {
         catapult.setCatapultMode(this.state);
     }
+    
 }
