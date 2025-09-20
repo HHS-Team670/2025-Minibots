@@ -7,7 +7,7 @@ import frc.robot.subsystems.ReflectiveSensor.Marker;
 
 public class FollowLine extends Command {
     private final ReflectiveSensor rSensor;
-    private final Drivetrain drivetrain;
+    private final Drivetrain mDrivetrain;
 
     private double speed;
     private double turnSpeed;
@@ -15,24 +15,24 @@ public class FollowLine extends Command {
     public FollowLine() {
         this.rSensor = ReflectiveSensor.getInstance();
         this.speed = 1;
-        this.drivetrain = Drivetrain.getInstance();
+        this.mDrivetrain = Drivetrain.getInstance();
         this.turnSpeed = 0.75;
-        addRequirements(drivetrain, rSensor);
+        addRequirements(mDrivetrain, rSensor);
     }
 
     @Override
     public void initialize() {
-        this.drivetrain.arcadeDrive(0, 0);
+        this.mDrivetrain.arcadeDrive(0, 0);
     }
 
     @Override
     public void execute() {
         if (rSensor.isLeftOn(Marker.LINE) && rSensor.isRightOn(Marker.LINE)) {
-            this.drivetrain.arcadeDrive(this.speed, 0);
+            this.mDrivetrain.arcadeDrive(this.speed, 0);
         } else if (!rSensor.isLeftOn(Marker.LINE) && rSensor.isRightOn(Marker.LINE)) {
-            this.drivetrain.arcadeDrive(0, -this.turnSpeed);
+            this.mDrivetrain.arcadeDrive(0, -this.turnSpeed);
         } else if (rSensor.isLeftOn(Marker.LINE) && !rSensor.isRightOn(Marker.LINE)) {
-            this.drivetrain.arcadeDrive(0, this.turnSpeed);
+            this.mDrivetrain.arcadeDrive(0, this.turnSpeed);
         }
     }
 
@@ -43,6 +43,9 @@ public class FollowLine extends Command {
 
     @Override
     public void end(boolean interrupted) {
-        this.drivetrain.arcadeDrive(0, 0);
+        new CheckByTurn(1, this.turnSpeed);
+        if (rSensor.isLeftOn(Marker.LINE) || rSensor.isRightOn(Marker.LINE)){
+            new FollowLine();
+        }
     }
 }

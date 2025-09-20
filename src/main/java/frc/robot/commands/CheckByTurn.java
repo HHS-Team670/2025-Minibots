@@ -1,4 +1,4 @@
-package frc.robot.commands.testing;
+package frc.robot.commands;
 
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ReflectiveSensor;
@@ -13,39 +13,40 @@ public class CheckByTurn extends Command {
 
   private int direction;
   private double speed;
+  private double startingAngle;
   
-  public CheckByTurn(int direction, double speed) {
+  public CheckByTurn(int direction, double speed, double ... startingAngle) {
     this.direction = direction;
     this.speed = speed;
+    
     this.mDrivetrain = Drivetrain.getInstance();
     this.rSensor = ReflectiveSensor.getInstance();
-    
     addRequirements(mDrivetrain, rSensor);
+    
+    this.startingAngle = (startingAngle.length > 0) ? startingAngle[0] : mDrivetrain.getGyroAngleX();
   }
   
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     mDrivetrain.arcadeDrive(0, 0);
     mDrivetrain.resetEncoders();
   }
 
-
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    mDrivetrain.arcadeDrive(0, direction*speed);
+    mDrivetrain.arcadeDrive(0, direction*this.speed);
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
+    if (direction == 1 && !this.isFinished()){
+      new CheckByTurn(-1, speed, this.startingAngle);
+    }
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return ((rSensor.isLeftOn(Marker.LINE) || rSensor.isRightOn(Marker.LINE)) ||
+            (Math.abs(mDrivetrain.getGyroAngleX()-startingAngle) < 100));
   }
 }
