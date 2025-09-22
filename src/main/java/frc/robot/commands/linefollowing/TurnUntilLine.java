@@ -1,24 +1,25 @@
-package frc.robot.commands.auton;
+package frc.robot.commands.linefollowing;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ReflectiveSensor;
 
-public class LineFollow extends Command {
+public class TurnUntilLine extends Command{
     private ReflectiveSensor sensor;
 
-    private double speed;
     private Drivetrain drivetrain;
     private double turnSpeed;
+    private int direction;
     private static float bottomInterval = 0.0f;
-    private static float topInterval = 0.85f;
+    private static float topInterval = 0.86f;
 
-    public LineFollow(double speed, double turnSpeed) {
+
+    public TurnUntilLine(double speed, int dir) {
         this.sensor = ReflectiveSensor.getInstance();
-        this.speed = speed;
         this.drivetrain = Drivetrain.getInstance();
-        this.turnSpeed = turnSpeed;
-        addRequirements(drivetrain, sensor);
+        this.turnSpeed = speed;
+        this.direction = dir;
+        addRequirements(this.drivetrain, this.sensor);
     }
 
     @Override
@@ -36,30 +37,19 @@ public class LineFollow extends Command {
 
     @Override
     public void execute() {
-        System.out.println(this.sensor.rightValue() + ", " + this.sensor.leftValue());
-
-        if (isLeft() && isRight()) {
-            this.drivetrain.arcadeDrive(speed, 0);
-            // System.out.println("Online");
-        } else if (!isLeft() && isRight()) {
-            this.drivetrain.arcadeDrive(0, -turnSpeed);
-            // System.out.println("swerve left");
-
-        } else if (isLeft() && !isRight()) {
-            this.drivetrain.arcadeDrive(0, turnSpeed);
-            // System.out.println("swerve right");
-
-        }
+        // turn in direction with speed
+        System.out.println("Test");
+        this.drivetrain.arcadeDrive(0, this.turnSpeed*this.direction);
     }
 
     @Override
     public boolean isFinished() {
-        return !isLeft() && !isRight();
+        // If you are lined up with the line, finish.
+        return isLeft() && isRight();
     }
 
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Finished following line");
         drivetrain.arcadeDrive(0, 0);
     }
 }
