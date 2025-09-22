@@ -5,10 +5,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ReflectiveSensor extends SubsystemBase {
     public enum Marker {
-        LINE(0.8),
-        CIRCLE(0.75);
+        LINE(0.8);
 
-        private Double reflectiveValue;
+        private double reflectiveValue;
 
         private Marker(double reflectiveValue) {
             this.reflectiveValue = reflectiveValue;
