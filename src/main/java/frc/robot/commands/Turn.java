@@ -8,11 +8,14 @@ public class Turn extends Command {
     ReflectiveSensor rf;
     Drivetrain mDrivetrain;
     double lValue, rValue, tapeColor = 0.8;
+    int direction;
 
-    public Turn () {
+    public Turn (int direction) {
         this.rf = ReflectiveSensor.getInstance();
         this.mDrivetrain = Drivetrain.getInstance();
         addRequirements(mDrivetrain);
+
+        this.direction = direction;
     }
 
     @Override
@@ -24,7 +27,7 @@ public class Turn extends Command {
         lValue = rf.leftValue();
         rValue = rf.rightValue();
 
-        mDrivetrain.arcadeDrive(1,0.8);
+        mDrivetrain.arcadeDrive(1,0.8 * direction);
     }
 
     @Override
