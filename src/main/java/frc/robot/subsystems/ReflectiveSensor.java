@@ -41,10 +41,10 @@ public class ReflectiveSensor extends SubsystemBase {
     }
 
     public boolean isLeftOn(double val) {
-        return (leftValue() <= val);
+        return (leftValue() >= val);
     }
 
     public boolean isRightOn(double val) {
-        return (rightValue() <= val);
+        return (rightValue() >= val);
     }
 }
