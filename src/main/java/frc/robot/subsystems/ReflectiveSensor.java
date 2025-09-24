@@ -25,4 +25,10 @@ public class ReflectiveSensor extends SubsystemBase {
     public double rightValue() {
         return mReflectanceSensor.getRightReflectanceValue();
     }
+
+    @Override
+    public void periodic() {
+        //System.out.println("Left: " + leftValue());
+        //System.out.println("Right: "+ rightValue());
+    }
 }
