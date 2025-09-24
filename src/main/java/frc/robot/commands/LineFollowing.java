@@ -77,5 +77,3 @@ public class LineFollowing extends InstantCommand{
     return (!seesRightLine() && !seesLeftLine()) || !FollowLine;
   }
 }
-  
-
