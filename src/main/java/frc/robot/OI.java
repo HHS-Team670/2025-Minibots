@@ -7,7 +7,6 @@ import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.joystickUtils.XboxJoysticButtons;
 import frc.robot.subsystems.Catapult.CatapultMode;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.ReflectiveSensor;
 import frc.robot.commands.LineFollowing;
 
 public final class OI {
