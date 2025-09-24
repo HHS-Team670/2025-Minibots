@@ -33,12 +33,10 @@ public class LineFollowing extends Command {
         else if (lValue >= tapeColor) {
             // turn left
             mDrivetrain.arcadeDrive(0, 0.8);
-            System.out.println("Left");
         }
         else if (rValue >= tapeColor) {
             // turn right
             mDrivetrain.arcadeDrive(0,-0.8);
-            System.out.println("Right");
         }
     }
 
