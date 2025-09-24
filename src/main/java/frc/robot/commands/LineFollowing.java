@@ -26,15 +26,15 @@ public class LineFollowing extends Command {
         
 // In future change to move forward while turning
 
-        if (lValue <= tapeColor && rValue <= tapeColor) {
+        if (lValue >= tapeColor && rValue >= tapeColor) {
             // continue going forward
             mDrivetrain.arcadeDrive(1,0);
         }
-        else if (lValue <= tapeColor && rValue != tapeColor ) {
+        else if (lValue >= tapeColor) {
             // turn left
             mDrivetrain.arcadeDrive(0,-1);
         }
-        else if (lValue != tapeColor && rValue <= tapeColor) {
+        else if (rValue >= tapeColor) {
             // turn right
             mDrivetrain.arcadeDrive(0,1);
         }
@@ -42,7 +42,7 @@ public class LineFollowing extends Command {
 
     @Override
     public boolean isFinished() {
-        return (lValue >= tapeColor && rValue >= tapeColor);
+        return (lValue <= tapeColor && rValue <= tapeColor);
     }
 
     @Override
