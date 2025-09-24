@@ -21,12 +21,12 @@ public class LineFollowTurn extends InstantCommand{
 
     private boolean seesRightLine(){
         // 0.75 is the number of between the color of white and black, not change it
-        return (reflectiveSensor.rightValue() <= 0.75);
+        return (reflectiveSensor.rightValue() <= 0.80);
     }
 
     private boolean seesLeftLine(){
         // 0.75 is the number of between the color of white and black, not change it
-        return (reflectiveSensor.leftValue() <= 0.75);
+        return (reflectiveSensor.leftValue() <= 0.80);
     }
 
     @Override
