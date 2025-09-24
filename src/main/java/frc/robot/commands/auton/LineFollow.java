@@ -11,19 +11,21 @@ public class LineFollow extends Command {
     private double turnSpeed;
     public static boolean IsFollowing = false;
 
-  public LineFollow(double speed, double turnSpeed) {
+  public 
+  LineFollow(double speed, double turnSpeed) {
     this.sensor = ReflectiveSensor.getInstance();
     this.drivetrain = Drivetrain.getInstance();
     this.speed = speed;
     this.turnSpeed = turnSpeed;
+    System.out.println(this.sensor);
   }
   
   public boolean isLeft() {
-    return this.sensor.leftValue() >= 0.85;
+    return this.sensor.leftValue() > 0.8;
   }
 
   public boolean isRight() {
-    return this.sensor.rightValue() >= 0.73;
+    return this.sensor.rightValue() > 0.8;
   }
 
   @Override
@@ -41,10 +43,13 @@ public class LineFollow extends Command {
     } else if (isLeft() && !isRight()){
       drivetrain.arcadeDrive(0, -this.turnSpeed);
     }
+    System.out.println(this.sensor.leftValue() + ", " + this.sensor.rightValue());
 }
 
 @Override
-public void end(boolean interrupted) {}
+public void end(boolean interrupted) {
+  System.out.println("Finished line following");
+}
 
 @Override
 public boolean isFinished(){
