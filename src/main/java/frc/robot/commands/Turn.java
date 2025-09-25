@@ -27,7 +27,7 @@ public class Turn extends Command {
         lValue = rf.leftValue();
         rValue = rf.rightValue();
 
-        mDrivetrain.arcadeDrive(1,0.8 * direction);
+        mDrivetrain.arcadeDrive(0.6, 0.8 * direction);
     }
 
     @Override

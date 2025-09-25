@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class LineFollowing extends Command {
     ReflectiveSensor rf;
     Drivetrain mDrivetrain;
-    double lValue, rValue, tapeColor = 0.8;
+    double lValue, rValue, tapeColor = 0.9;
 
     public LineFollowing () {
         this.rf = ReflectiveSensor.getInstance();
@@ -36,16 +36,17 @@ public class LineFollowing extends Command {
         }
         else if (rValue >= tapeColor) {
             // turn right
-            mDrivetrain.arcadeDrive(0,-0.8);
+            mDrivetrain.arcadeDrive(0,-0.6);
         }
     }
 
     @Override
     public boolean isFinished() {
-        return (lValue <= 0.5 && rValue <= 0.5);
+        return (lValue < tapeColor && rValue < tapeColor);
     }
 
     @Override
     public void end(boolean interrupted) {
+        System.out.println("end");
     }
 }

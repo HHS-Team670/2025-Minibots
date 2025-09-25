@@ -16,9 +16,9 @@ public class LineFollowingCommand extends SequentialCommandGroup {
     public LineFollowingCommand() {
         addCommands (
             new LineFollowing(),
-            new Turn(1),
-            new LineFollowing(),
             new Turn(-1),
+            new LineFollowing(),
+            new Turn(1),
             new LineFollowing()
 
             
