@@ -4,7 +4,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.LineFollowing;
 import frc.robot.commands.SetCatapult;
-import frc.robot.commands.StopLineFollowing;
+//import frc.robot.commands.StopLineFollowing;
+import frc.robot.commands.TurnLineFollowing;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.joystickUtils.XboxJoysticButtons;
 import frc.robot.subsystems.Drivetrain;
@@ -27,16 +28,11 @@ public final class OI {
   public static void configureDriverControls() {
     XboxJoysticButtons.Driver_ButtonA.onTrue(new SetCatapult(CatapultMode.ON));
     XboxJoysticButtons.Driver_ButtonB.onTrue(new SetCatapult(CatapultMode.OFF));
-    //good combinations: (1, 0.3), (0.9,0.3), 
-    XboxJoysticButtons.Driver_ButtonX.onTrue(new LineFollowing(0.9, 0.5)
-    
-    
-    
-    
-    
-    );
+    //good combinations: (0.9, 0.5 or 0.7)
+    XboxJoysticButtons.Driver_ButtonX.onTrue(new LineFollowing(0.9, 0.6));
+    //XboxJoysticButtons.Driver_LeftTrigger.onTrue(new LineFollowing(0.9, 0.6));
 
-    XboxJoysticButtons.Driver_ButtonY.onTrue(new StopLineFollowing());
+    XboxJoysticButtons.Driver_LeftTrigger.onTrue(new TurnLineFollowing(0.5));
 
   }
 

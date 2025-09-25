@@ -18,7 +18,7 @@ public class LineFollowing extends InstantCommand{
         this.reflectiveSensor = ReflectiveSensor.getInstance();
         this.drivetrain = Drivetrain.getInstance();
         this.speed = speed;
-        this.turningSpeed = speed;
+        this.turningSpeed = turningSpeed;
 
     }
     
