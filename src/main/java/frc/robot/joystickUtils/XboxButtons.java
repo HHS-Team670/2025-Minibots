@@ -20,7 +20,7 @@ public class XboxButtons {
   public static final int LEFT_STICK_Y = 1;
 
   /** Left = Negative, Right = Positive [-1, 1] */
-  public static final int RIGHT_STICK_X = 2; // 0 for keyboard, 2 for xbox
+  public static final int RIGHT_STICK_X = 4; // 0 for keyboard, 2 for xbox
 
   /** Up = Negative, Down = Positive [-1, 1] */
   public static final int RIGHT_STICK_Y = 3;

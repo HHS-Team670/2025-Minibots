@@ -39,9 +39,9 @@ public class LineFollow extends Command {
     if (isLeft() && isRight()){
       drivetrain.arcadeDrive(this.speed, 0);
     } else if (!isLeft() && isRight()) {
-      drivetrain.arcadeDrive(0, this.turnSpeed);
-    } else if (isLeft() && !isRight()){
       drivetrain.arcadeDrive(0, -this.turnSpeed);
+    } else if (isLeft() && !isRight()){
+      drivetrain.arcadeDrive(0, this.turnSpeed);
     }
     System.out.println(this.sensor.leftValue() + ", " + this.sensor.rightValue());
 }

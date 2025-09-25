@@ -29,7 +29,7 @@ public final class OI {
     XboxJoysticButtons.Driver_ButtonA.onTrue(new SetCatapult(CatapultMode.ON));
     XboxJoysticButtons.Driver_ButtonA.onFalse(new SetCatapult(CatapultMode.OFF));
 
-    XboxJoysticButtons.Driver_ButtonB.onTrue(new LineFollow(1,0.5));
+    XboxJoysticButtons.Driver_ButtonB.onTrue(new LineFollow(1,2));
     XboxJoysticButtons.Driver_ButtonX.onTrue(new StopFollow());
   }
 
