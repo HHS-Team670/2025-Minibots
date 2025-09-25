@@ -10,12 +10,11 @@ public class LineFollowTurn extends InstantCommand{
     private Drivetrain drivetrain;
     private double speed;
     private double turnspeed;
-    public  static boolean FollowLine = false;
+    public  static boolean TurnLine = false;
 
-    public LineFollowTurn(double speed, double turnSpeed){
+    public LineFollowTurn(double turnSpeed){
         this.reflectiveSensor = ReflectiveSensor.getInstance();
         this.drivetrain = Drivetrain.getInstance();
-        this.speed = speed;
         this.turnspeed = turnspeed;
     }
 
@@ -31,7 +30,7 @@ public class LineFollowTurn extends InstantCommand{
 
     @Override
     public void initialize() {
-        FollowLine = true;
+        TurnLine = true;
     }
 
     @Override
@@ -55,13 +54,13 @@ public class LineFollowTurn extends InstantCommand{
 
     @Override
     public boolean isFinished(){
-        return (!seesLeftLine() && !seesRightLine()) || FollowLine;
+        return (seesLeftLine() && seesRightLine()) || TurnkLine;
 
     }
 
     @Override
     public void end(boolean interrupted) {
-         FollowLine = false;     
+         TurnLine = false;     
     }    
 
     
