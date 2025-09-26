@@ -1,24 +1,21 @@
 package frc.robot.commands.linefollowing;
 
 import edu.wpi.first.wpilibj2.command.Command;
+// import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.ReflectiveSensor;
 
 public class LineFollow extends Command {
-    private ReflectiveSensor sensor;
 
     private double speed;
     private Drivetrain drivetrain;
     private double turnSpeed;
-    private static float bottomInterval = 0.0f;
-    private static float topInterval = 0.86f;
+    // private static float bottomInterval = 0.0f;
 
     public LineFollow(double speed, double turnSpeed) {
-        this.sensor = ReflectiveSensor.getInstance();
         this.speed = speed;
         this.drivetrain = Drivetrain.getInstance();
         this.turnSpeed = turnSpeed;
-        addRequirements(this.drivetrain, this.sensor);
+        addRequirements(this.drivetrain);
     }
 
     @Override
@@ -26,26 +23,18 @@ public class LineFollow extends Command {
         drivetrain.arcadeDrive(0, 0);
     }
 
-    public boolean isLeft() {
-        return this.sensor.leftValue() >= bottomInterval && this.sensor.leftValue() <= topInterval;
-    }
-
-    public boolean isRight() {
-        return this.sensor.rightValue() >= bottomInterval && this.sensor.rightValue() <= topInterval;
-    }
-
     @Override
     public void execute() {
-        System.out.println(this.sensor.rightValue() + ", " + this.sensor.leftValue());
+        System.out.println(SensorMethods.sensor.rightValue() + ", " + SensorMethods.sensor.leftValue());
 
-        if (isLeft() && isRight()) {
+        if (SensorMethods.isLeft() && SensorMethods.isRight()) {
             this.drivetrain.arcadeDrive(this.speed, 0);
             // System.out.println("Online");
-        } else if (!isLeft() && isRight()) {
+        } else if (!SensorMethods.isLeft() && SensorMethods.isRight()) {
             this.drivetrain.arcadeDrive(this.speed, -this.turnSpeed);
             // System.out.println("swerve left");
 
-        } else if (isLeft() && !isRight()) {
+        } else if (SensorMethods.isLeft() && !SensorMethods.isRight()) {
             this.drivetrain.arcadeDrive(this.speed, this.turnSpeed);
             // System.out.println("swerve right");
 
@@ -54,7 +43,7 @@ public class LineFollow extends Command {
 
     @Override
     public boolean isFinished() {
-        return !isLeft() && !isRight();
+        return !SensorMethods.isLeft() && !SensorMethods.isRight();
     }
 
     @Override
