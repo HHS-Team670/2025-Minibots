@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class Turn extends Command {
     ReflectiveSensor rf;
     Drivetrain mDrivetrain;
-    double lValue, rValue, tapeColor = 0.8;
+    double lValue, rValue, tapeColor = 0.7;
     int direction;
 
     public Turn (int direction) {
