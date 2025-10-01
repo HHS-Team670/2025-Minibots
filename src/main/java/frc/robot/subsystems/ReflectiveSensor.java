@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ReflectiveSensor extends SubsystemBase {
     public enum Marker {
-        LINE(0.8);
+        LINE(0.7);
 
         private double reflectiveValue;
 
@@ -41,10 +41,10 @@ public class ReflectiveSensor extends SubsystemBase {
     }
 
     public boolean isLeftOn(Marker marker) {
-        return (leftValue() <= marker.getVal());
+        return (leftValue() >= marker.getVal());
     }
 
     public boolean isRightOn(Marker marker) {
-        return (rightValue() <= marker.getVal());
+        return (rightValue() >= marker.getVal());
     }
 }

@@ -3,49 +3,56 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ReflectiveSensor;
-import frc.robot.subsystems.ReflectiveSensor.Marker;
 
 public class FollowLine extends Command {
-    private final ReflectiveSensor rSensor;
-    private final Drivetrain mDrivetrain;
+  private Drivetrain drivetrain;
+  private ReflectiveSensor reflectiveSensor;
+  private double forwardSpeed;
+  private double turnForwardSpeed;
+  private double rotateSpeed;
 
-    private double speed;
-    private double turnSpeed;
+  private boolean leftDetects;
+  private boolean rightDetects;
 
-    public FollowLine() {
-        this.rSensor = ReflectiveSensor.getInstance();
-        this.speed = 1;
-        this.mDrivetrain = Drivetrain.getInstance();
-        this.turnSpeed = 0.75;
-        addRequirements(mDrivetrain, rSensor);
+  public FollowLine(double forwardSpeed, double turnForwardSpeed, double rotateSpeed) {
+    this.drivetrain = Drivetrain.getInstance();
+    this.reflectiveSensor = ReflectiveSensor.getInstance();
+    this.forwardSpeed = forwardSpeed;
+    this.turnForwardSpeed = turnForwardSpeed;
+    this.rotateSpeed = rotateSpeed;
+    addRequirements(drivetrain, reflectiveSensor);
+  }
+
+  @Override
+  public void initialize() {
+    drivetrain.arcadeDrive(0, 0);
+    drivetrain.resetEncoders();
+  }
+
+  @Override
+  public void execute() {
+    leftDetects = SafeTravelRoute.leftSensorDetectsLine();
+    rightDetects = SafeTravelRoute.rightSensorDetectsLine();
+
+    // move forward if both sensors detect less light than the color value
+    if (leftDetects && rightDetects) {
+      drivetrain.arcadeDrive(forwardSpeed, 0);
+    } else if (leftDetects) {
+      //If swerved too far right and only left sensor detects the tape, move forward and rotate left
+      drivetrain.arcadeDrive(turnForwardSpeed, rotateSpeed);
+    } else if (rightDetects) {
+      drivetrain.arcadeDrive(turnForwardSpeed, -1  * rotateSpeed);
     }
+  }
 
-    @Override
-    public void initialize() {
-        this.mDrivetrain.arcadeDrive(0, 0);
-    }
+  @Override
+  public boolean isFinished() {
+    //If both sensors do not detect tape, the line following is finished
+    return (!leftDetects && !rightDetects); // ould also be written as (!(leftDetects || rightDetects))
+  }
 
-    @Override
-    public void execute() {
-        if (rSensor.isLeftOn(Marker.LINE) && rSensor.isRightOn(Marker.LINE)) {
-            this.mDrivetrain.arcadeDrive(this.speed, 0);
-        } else if (!rSensor.isLeftOn(Marker.LINE) && rSensor.isRightOn(Marker.LINE)) {
-            this.mDrivetrain.arcadeDrive(0, -this.turnSpeed);
-        } else if (rSensor.isLeftOn(Marker.LINE) && !rSensor.isRightOn(Marker.LINE)) {
-            this.mDrivetrain.arcadeDrive(0, this.turnSpeed);
-        }
-    }
-
-    @Override
-    public boolean isFinished() {
-        return (!rSensor.isLeftOn(Marker.LINE) && !rSensor.isRightOn(Marker.LINE));
-    }
-
-    @Override
-    public void end(boolean interrupted) {
-        new CheckByTurn(1, this.turnSpeed);
-        if (rSensor.isLeftOn(Marker.LINE) || rSensor.isRightOn(Marker.LINE)){
-            new FollowLine();
-        }
-    }
+  @Override
+  public void end(boolean interrupted) {
+    drivetrain.arcadeDrive(0, 0);
+  }
 }
