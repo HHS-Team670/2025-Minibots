@@ -1,0 +1,6 @@
+manual controls:
+
+W - forward while press
+S - backward while press
+Z - arm (start)
+D - arm (stop)

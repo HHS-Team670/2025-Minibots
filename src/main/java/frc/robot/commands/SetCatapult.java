@@ -6,34 +6,34 @@ import frc.robot.subsystems.Catapult.CatapultMode;
 
 public class SetCatapult extends InstantCommand {
   private Catapult catapult;
+  private Catapult.CatapultMode mode;
 
-
-  public SetCatapult() {
+  public SetCatapult(CatapultMode mode) {
     this.catapult = Catapult.getInstance();
-
+    this.mode = mode;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    catapult.setCatapultMode(CatapultMode.ON);
+    catapult.setCatapultMode(mode);
   }
 }
-//   // Called every time the scheduler runs while the command is scheduled.
-//   @Override
-//   public void execute() {
-    
-//   }
+// // Called every time the scheduler runs while the command is scheduled.
+// @Override
+// public void execute() {
 
-//   // Called once the command ends or is interrupted.
-//   @Override
-//   public void end(boolean interrupted) {
-    
-//   }
+// }
 
-//   // Returns true when the command should end.
-//   @Override
-//   public boolean isFinished() {
-//     return false;
-//   }
+// // Called once the command ends or is interrupted.
+// @Override
+// public void end(boolean interrupted) {
+
+// }
+
+// // Returns true when the command should end.
+// @Override
+// public boolean isFinished() {
+// return false;
+// }
 // }
