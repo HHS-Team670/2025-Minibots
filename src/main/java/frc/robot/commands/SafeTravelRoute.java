@@ -16,10 +16,10 @@ public class SafeTravelRoute extends SequentialCommandGroup {
     public SafeTravelRoute() {
         addCommands(
                 new LineFollowing(forwardDriveSpeed, turnSpeedLine),
-                new TurnLineFollowing(-1 * turnSpeedTurn)
-                //new LineFollowing(forwardDriveSpeed, turnSpeedLine),
-                //new TurnLineFollowing(turnSpeedTurn),
-                //new LineFollowing(forwardDriveSpeed, turnSpeedLine)
+                new TurnLineFollowing(-1 * turnSpeedTurn),
+                new LineFollowing(forwardDriveSpeed, turnSpeedLine),
+                new TurnLineFollowing(turnSpeedTurn),
+                new LineFollowing(forwardDriveSpeed, turnSpeedLine)
 
         );
         System.out.println("I HAVE FINISHED SAFE TRAVEL ROUTE");

@@ -17,6 +17,7 @@ public class TurnLineFollowing extends InstantCommand{
         this.reflectiveSensor = ReflectiveSensor.getInstance();
         this.drivetrain = Drivetrain.getInstance();
         this.turningSpeed = turningSpeed;
+        
         addRequirements(drivetrain, reflectiveSensor);
 
     }
