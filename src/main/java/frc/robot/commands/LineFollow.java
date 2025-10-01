@@ -5,14 +5,14 @@ import frc.robot.subsystems.ReflectiveSensor;
 import edu.wpi.first.wpilibj2.command.Command; 
 import edu.wpi.first.wpilibj2. command.InstantCommand;
 
-public class LineFollowTurn extends InstantCommand{
+public class LineFollow extends InstantCommand{
     private ReflectiveSensor reflectiveSensor;
     private Drivetrain drivetrain;
     private double speed;
     private double turnspeed;
     public  static boolean FollowLine = false;
 
-    public LineFollowTurn(double speed, double turnSpeed){
+    public LineFollow(double speed, double turnSpeed){
         this.reflectiveSensor = ReflectiveSensor.getInstance();
         this.drivetrain = Drivetrain.getInstance();
         this.speed = speed;
@@ -21,12 +21,12 @@ public class LineFollowTurn extends InstantCommand{
 
     private boolean seesRightLine(){
         // 0.75 is the number of between the color of white and black, not change it
-        return (reflectiveSensor.rightValue() <= 0.75);
+        return (reflectiveSensor.rightValue() <= 0.80);
     }
 
     private boolean seesLeftLine(){
         // 0.75 is the number of between the color of white and black, not change it
-        return (reflectiveSensor.leftValue() <= 0.75);
+        return (reflectiveSensor.leftValue() <= 0.80);
     }
 
     @Override
@@ -71,4 +71,3 @@ public class LineFollowTurn extends InstantCommand{
 
 
 }
-
