@@ -55,17 +55,19 @@ public class LineFollowing extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (!ForceStop) {
       if (doesLeftDetect() && doesRightDetect()) { // straight
         mDrivetrain.arcadeDrive(speed, 0);
-    }
+      }
     if (doesLeftDetect() && !doesRightDetect()) { //turns left
         mDrivetrain.arcadeDrive(speed, 0.5);
-    }
+      }
     if (!doesLeftDetect() && doesRightDetect()) { //turns right
         mDrivetrain.arcadeDrive(speed, -0.5);
+      }
     }
   }
-
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
@@ -78,6 +80,5 @@ public class LineFollowing extends Command {
   public boolean isFinished() {
     // Compare distance travelled from start to desired distance
     return (!doesLeftDetect() && !doesRightDetect());
-      
   }
 }
