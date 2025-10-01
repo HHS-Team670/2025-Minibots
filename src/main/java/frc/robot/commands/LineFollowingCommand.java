@@ -15,10 +15,10 @@ public class LineFollowingCommand extends SequentialCommandGroup {
     public LineFollowingCommand() {
         addCommands (
             new LineFollowing(),
-            new DriveForward(1,1),
+            new DriveForward(0.6,1),
             new Turn(-1),
             new LineFollowing(),
-            new DriveForward(1,1),
+            new DriveForward(0.6,1),
             new Turn(1),
             new LineFollowing()
 
