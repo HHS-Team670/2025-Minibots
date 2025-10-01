@@ -32,11 +32,11 @@ public class LineFollowing extends Command {
         }
         else if (lValue >= tapeColor) {
             // turn left
-            mDrivetrain.arcadeDrive(0.1, 0.8);
+            mDrivetrain.arcadeDrive(0.6, 0.8);
         }
         else if (rValue >= tapeColor) {
             // turn right
-            mDrivetrain.arcadeDrive(0.1,-0.8);
+            mDrivetrain.arcadeDrive(0.6,-0.8);
         }
     }
 
@@ -47,6 +47,9 @@ public class LineFollowing extends Command {
 
     @Override
     public void end(boolean interrupted) {
-        //System.out.println("Line Follow End");
+        System.out.println("Line Follow End");
+        System.out.println("Line Follow End"); 
+        System.out.println("Line Follow End");
+        System.out.println("Line Follow End");
     }
 }

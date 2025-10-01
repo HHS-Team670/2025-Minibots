@@ -37,6 +37,9 @@ public class Turn extends Command {
 
     @Override
     public void end(boolean interrupted) {
-        //System.out.println("Turn End");
+        System.out.println("Turn End");
+        System.out.println("Turn End");
+        System.out.println("Turn End");
+        System.out.println("Turn End");
     }
 }
