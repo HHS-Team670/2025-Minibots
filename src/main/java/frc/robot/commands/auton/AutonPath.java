@@ -11,11 +11,11 @@ public class AutonPath extends SequentialCommandGroup {
     // sequential command groups)
     public AutonPath() {
         addCommands(
-            new DriveForward(1, 29),
-            new TurnDegrees(1, -45),
-            new DriveForward(1, 36),
-            new TurnDegrees(1, 45),
-            new DriveForward(1, 40)
+            new DriveForward(1, 10),
+            new TurnDegrees(1, -90),
+            new DriveForward(1, 10),
+            new TurnDegrees(1, 90),
+            new DriveForward(1, 10)
         );
     }
 }
