@@ -4,20 +4,6 @@ import edu.wpi.first.wpilibj.xrp.XRPReflectanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ReflectiveSensor extends SubsystemBase {
-    public enum Marker {
-        LINE(0.7);
-
-        private double reflectiveValue;
-
-        private Marker(double reflectiveValue) {
-            this.reflectiveValue = reflectiveValue;
-        }
-
-        public double getVal(){
-            return reflectiveValue;
-        }
-    }
-
     // Stores the instance to avoid multiple instances of the same subsystem
     private static ReflectiveSensor mInstance = null;
 
@@ -38,13 +24,5 @@ public class ReflectiveSensor extends SubsystemBase {
 
     public double rightValue() {
         return mReflectanceSensor.getRightReflectanceValue();
-    }
-
-    public boolean isLeftOn(Marker marker) {
-        return (leftValue() >= marker.getVal());
-    }
-
-    public boolean isRightOn(Marker marker) {
-        return (rightValue() >= marker.getVal());
     }
 }
