@@ -11,7 +11,7 @@ public class AutonPath extends SequentialCommandGroup {
     // sequential command groups)
     public AutonPath() {
         addCommands (
-            new DriveForward(0.7, 8)
+            new DriveForward(0.7, 15)
         );
     }
 }
