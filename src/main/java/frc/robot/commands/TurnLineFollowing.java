@@ -10,13 +10,14 @@ public class TurnLineFollowing extends InstantCommand{
     private ReflectiveSensor reflectiveSensor;
     private Drivetrain drivetrain;
     private double turningSpeed;
-    //public static boolean TurnOnLine = false;
+    public static boolean TurnOnLine = false;
 
 
     public TurnLineFollowing(double turningSpeed){
         this.reflectiveSensor = ReflectiveSensor.getInstance();
         this.drivetrain = Drivetrain.getInstance();
         this.turningSpeed = turningSpeed;
+        
         
         addRequirements(drivetrain, reflectiveSensor);
 
@@ -38,6 +39,7 @@ public class TurnLineFollowing extends InstantCommand{
         //TurnOnLine = true;
         drivetrain.arcadeDrive(0,0);
         drivetrain.resetEncoders();
+        TurnOnLine = true;
 
 
     }
@@ -76,6 +78,6 @@ public class TurnLineFollowing extends InstantCommand{
         System.out.println("I see line on one sensor");
     }
     */
-    return (seesRightLine() && seesLeftLine());
+    return (seesRightLine() && seesLeftLine()) || !TurnOnLine;
   }
 }

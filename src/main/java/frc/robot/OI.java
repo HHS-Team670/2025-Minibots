@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.LineFollowing;
 import frc.robot.commands.SafeTravelRoute;
 import frc.robot.commands.SetCatapult;
+import frc.robot.commands.StopLineFollowing;
 //import frc.robot.commands.StopLineFollowing;
 import frc.robot.commands.TurnLineFollowing;
 import frc.robot.commands.drivetrain.ArcadeDrive;
@@ -34,6 +35,7 @@ public final class OI {
     //XboxJoysticButtons.Driver_LeftTrigger.onTrue(new LineFollowing(0.9, 0.6));
 
     XboxJoysticButtons.Driver_LeftTrigger.onTrue(new SafeTravelRoute());
+    XboxJoysticButtons.Driver_RightTrigger.onTrue(new StopLineFollowing());
 
   }
 

@@ -8,5 +8,7 @@ public class StopLineFollowing extends InstantCommand{
     @Override
     public void initialize(){
         LineFollowing.FollowLine = false;
+        TurnLineFollowing.TurnOnLine = false;
+
     }
 }
