@@ -4,10 +4,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.LineFollowing;
 import frc.robot.commands.SafeTravelRoute;
+import frc.robot.commands.SaferTravelRoute;
 import frc.robot.commands.SetCatapult;
 import frc.robot.commands.StopLineFollowing;
 //import frc.robot.commands.StopLineFollowing;
-import frc.robot.commands.TurnLineFollowing;
+//import frc.robot.commands.TurnLineFollowing;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.joystickUtils.XboxJoysticButtons;
 import frc.robot.subsystems.Drivetrain;
@@ -36,6 +37,7 @@ public final class OI {
 
     XboxJoysticButtons.Driver_LeftTrigger.onTrue(new SafeTravelRoute());
     XboxJoysticButtons.Driver_RightTrigger.onTrue(new StopLineFollowing());
+    XboxJoysticButtons.Driver_LeftBumper.onTrue(new SaferTravelRoute());
 
   }
 

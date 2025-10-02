@@ -9,6 +9,7 @@ public class StopLineFollowing extends InstantCommand{
     public void initialize(){
         LineFollowing.FollowLine = false;
         TurnLineFollowing.TurnOnLine = false;
+        DriveUntilLine.GoUntilLine = false;
 
     }
 }

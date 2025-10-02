@@ -1,3 +1,4 @@
+
 package frc.robot.commands;
 
 //import frc.robot.commands.drivetrain.ArcadeDrive;
@@ -7,19 +8,17 @@ import frc.robot.subsystems.ReflectiveSensor;
 //import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
-public class LineFollowing extends InstantCommand{
+public class DriveUntilLine extends InstantCommand{
     private ReflectiveSensor reflectiveSensor;
     private Drivetrain drivetrain;
     private double speed; 
-    private double turningSpeed;
-    public static boolean FollowLine = false;
+    public static boolean GoUntilLine = false;
 
 
-    public LineFollowing(double speed, double turningSpeed){
+    public DriveUntilLine(double speed){
         this.reflectiveSensor = ReflectiveSensor.getInstance();
         this.drivetrain = Drivetrain.getInstance();
         this.speed = speed;
-        this.turningSpeed = turningSpeed;
 
     }
     
@@ -36,7 +35,7 @@ public class LineFollowing extends InstantCommand{
 
     @Override
     public void initialize() {
-        FollowLine = true;
+        GoUntilLine = true;
         
 
 
@@ -51,8 +50,10 @@ public class LineFollowing extends InstantCommand{
          System.out.println("left value: " + reflectiveSensor.leftValue());
          System.out.println("right value: " +reflectiveSensor.rightValue());
 
+         drivetrain.arcadeDrive(this.speed, 0);
 
 
+        /* 
         if (seesRightLine() && seesLeftLine()){
             drivetrain.arcadeDrive(this.speed, 0);
             System.out.println("I see line on BOTH sensors");
@@ -70,17 +71,18 @@ public class LineFollowing extends InstantCommand{
         } else {
             System.out.println("This is the else");
         }
+        */
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-        //drivetrain.arcadeDrive(0, 0);
+        drivetrain.arcadeDrive(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (!seesRightLine() && !seesLeftLine()) || !FollowLine;
+    return (seesRightLine() && seesLeftLine()) || !GoUntilLine;
   }
 }
