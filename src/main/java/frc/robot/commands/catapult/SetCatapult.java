@@ -14,7 +14,7 @@ public class SetCatapult extends InstantCommand{
     }
 
     @Override
-    public void initialize() {
+    public void initialize() {      
         catapult.setCatapultMode(this.mode);
     }
     

@@ -9,6 +9,9 @@ public class LineFollow extends Command {
     private double speed;
     private Drivetrain drivetrain;
     private double turnSpeed;
+
+    public static boolean isLineFollowing = true;
+
     // private static float bottomInterval = 0.0f;
 
     public LineFollow(double speed, double turnSpeed) {
@@ -21,6 +24,7 @@ public class LineFollow extends Command {
     @Override
     public void initialize() {
         drivetrain.arcadeDrive(0, 0);
+        isLineFollowing = true;
     }
 
     @Override
@@ -43,7 +47,8 @@ public class LineFollow extends Command {
 
     @Override
     public boolean isFinished() {
-        return !SensorMethods.isLeft() && !SensorMethods.isRight();
+        // System.out.println(isLineFollowing);
+        return (!SensorMethods.isLeft() && !SensorMethods.isRight()) || !isLineFollowing;
     }
 
     @Override

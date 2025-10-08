@@ -26,14 +26,14 @@ public class TurnUntilLine extends Command{
     @Override
     public void execute() {
         // turn in direction with speed
-        System.out.println("Turning");
+        // System.out.println("Turning");
         this.drivetrain.arcadeDrive(0, this.turnSpeed*this.direction);
     }
 
     @Override
     public boolean isFinished() {
         // If you are lined up with the line, finish.
-        return (SensorMethods.isLeft() && SensorMethods.isRight());
+        return (SensorMethods.isLeft() && SensorMethods.isRight()) || !LineFollow.isLineFollowing;
     }
 
     @Override
