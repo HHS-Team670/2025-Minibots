@@ -27,8 +27,6 @@ public final class OI {
     XboxJoysticButtons.Driver_ButtonA.onTrue(new SetCatapult(CatapultMode.ON));
 
     XboxJoysticButtons.Driver_ButtonB.onTrue(new SetCatapult(CatapultMode.OFF));
-
-    XboxJoysticButtons.Driver_ButtonX.onTrue(new SafeTravelRoute());
   }
 
   // Returns the command that will be set as the drive command during tele-op
